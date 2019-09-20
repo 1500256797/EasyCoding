@@ -1,0 +1,39 @@
+server:
+port: 8081
+application:
+name:  cloud_system
+freemarker:
+prefer-file-system-access: false
+
+# 初始化大小，最小，最大
+initialSize: 5
+minIdle: 5
+maxIdle: 100
+maxActive: 500
+# 获取连接等待超时的时间
+maxWait: 5000
+# 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除
+testWhileIdle: true
+#获取连接时候验证，会影响性能
+test-on-borrow: true
+validation-query: SELECT 1 FROM DUAL
+# 每30秒运行一次空闲连接回收器（默认-1）
+timeBetweenEvictionRunsMillis:  28000
+# 池中的连接空闲30分钟后被回收（默认30分钟）
+minEvictableIdleTimeMillis: 1800000
+# 在每次空闲连接回收器线程(如果有)运行时检查的连接数量（设置为和maxIdle一样）
+numTestsPerEvictionRun: 100
+#配置告诉mybatis去哪找pojo类的映射文件  第一步先配置环境
+
+#分页插件
+pagehelper:
+helper-dialect: mysql
+reasonable: true
+support-methods-arguments: true
+params: count=countSql
+
+#视图解析
+spring:
+  mvc:
+    view:
+      suffix: .html
